@@ -1,10 +1,16 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    @user = current_user
+    @user_completed_talks = Talk.where(completed: true)
+    @upcoming_talks = Talk.where(completed: false)
+    @user_upcoming_talks = @upcoming_talks.sort
   end
 
   def show
     @user = current_user
+    @talk = Talk.new
+    @user_talks = Talk.where(user_id: @user.id)
   end
 
   def new

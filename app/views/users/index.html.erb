@@ -1,19 +1,13 @@
 <hr>
-Index page
-
-<ul>
-  <li>User should be able to see completed lightning talks</li>
-  <li>User should be able to see a list of lightning talks, sorted by soonest approaching</li>
-  <li>Users can only sign up on Tuesday or Thursday (only 5 signups per day)</li>
-</ul>
 
 <% if current_user %>
-current user is:
-<%= current_user.email %>
+Welcome, <%= current_user.email %>!
 <hr>
 
+<%= link_to "Sign up for a lightning talk", user_path(current_user) %>
+
 <div class="panel panel-default">
-  <div class="panel-heading">Lightning Talks</div>
+  <div class="panel-heading">Upcoming Lightning Talks</div>
 
   <table class="table">
     <thead>
@@ -21,22 +15,45 @@ current user is:
         <th>User</th>
         <th>Date</th>
         <th>Topic</th>
+        <th>Completed</th>
       </tr>
     </thead>
-    <% @users.each do |user| %>
+    <% @user_upcoming_talks.each do |talk| %>
       <tr>
-      <% user.talks.each do |talk| %>
         <td><%= talk.user_id %></td>
         <td><%= talk.date %></td>
         <td><%= talk.topics %></td>
+        <td><%= talk.completed %></td>
       </tr>
-      <% end %>
+    <% end %>
+  </table>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Completed Talks</div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+        <th>Topic</th>
+        <th>Completed</th>
+      </tr>
+    </thead>
+    <% @user_completed_talks.each do |talk| %>
+      <tr>
+        <td><%= talk.user_id %></td>
+        <td><%= talk.date %></td>
+        <td><%= talk.topics %></td>
+        <td><%= talk.completed %></td>
+      </tr>
     <% end %>
   </table>
 </div>
 
 
-<%= link_to "Sign up for a lightning talk", user_path(current_user) %>
+<hr>
 
 <% else %>
 

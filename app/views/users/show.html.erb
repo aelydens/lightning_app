@@ -4,7 +4,7 @@ Welcome, <%= current_user.email %>
 
 <div class="panel panel-default">
   <div class="panel-heading">Your Past Talks:</div>
-<% if @user.talks.any? %>
+<% if @user_talks %>
   <table class="table">
     <thead>
       <tr>
@@ -12,7 +12,7 @@ Welcome, <%= current_user.email %>
         <th>Topic</th>
       </tr>
     </thead>
-  <% @user.talks.each do |talk| %>
+  <% @user_talks.each do |talk| %>
   <tr>
     <td><%= talk.date %></td>
     <td><%= talk.topics %></td>
@@ -25,10 +25,16 @@ Welcome, <%= current_user.email %>
 </div>
 
 
-
 Sign Up for a Talk:
 
-<%= form_for([@user, @user.talks.build]) do |f| %>
+<%= form_for([@user, @talk]) do |f| %>
+
+<% if @talk.errors.any? %>
+  <% @talk.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
   <p>
     <%= f.label :topics, "Topic" %><br>
     <%= f.text_field :topics %>
