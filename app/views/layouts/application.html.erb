@@ -8,10 +8,13 @@
 </head>
 <body>
 <% if current_user %>
+
   <%= link_to "Sign Out", sign_out_path, method: :delete %>
   <% else %>
-  <%= link_to "Sign In", sign_in_path %>
-  <%= link_to "Sign Up", sign_up_path %>
+  <ul class="nav nav-tabs">
+    <li><%= link_to "Sign In", sign_in_path, data: { toggle: "pill" } %></li>
+    <li><%= link_to "Sign Up", sign_up_path, data: { toggle: "pill" } %></li>
+  </ul>
 <% end %>
 
 <%= yield %>

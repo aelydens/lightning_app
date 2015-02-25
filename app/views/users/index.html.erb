@@ -1,8 +1,21 @@
+<hr>
 Index page
+
+<ul>
+  <li>User should be able to see completed lightning talks</li>
+  <li>User should be able to see a list of lightning talks, sorted by soonest approaching</li>
+  <li>Users can only sign up on Tuesday or Thursday (only 5 signups per day)</li>
+</ul>
 
 <% if current_user %>
 current user is:
 <%= current_user.email %>
+<hr>
+
+<%= link_to "Sign up for a lightning talk", user_path(current_user) %>
+
 <% else %>
+
 Nobody is here
-<% end %> 
+
+<% end %>

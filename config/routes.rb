@@ -5,4 +5,9 @@ Rails.application.routes.draw do
   delete "sign-out", to: "sessions#destroy"
   get "sign-in", to: "sessions#new"
   post "sign-in", to: "sessions#create"
+
+  resources :users do
+    resources :talks
+  end
+
 end
