@@ -1,0 +1,46 @@
+<% if current_user %>
+
+Welcome, <%= current_user.email %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Your Past Talks:</div>
+<% if @user.talks.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Topic</th>
+      </tr>
+    </thead>
+  <% @user.talks.each do |talk| %>
+  <tr>
+    <td><%= talk.date %></td>
+    <td><%= talk.topics %></td>
+  </tr>
+  <% end %>
+<% else %>
+  You have no talks. SIGN UP FOR ONE!
+<% end %>
+  </table>
+</div>
+
+
+
+Sign Up for a Talk:
+
+<%= form_for([@user, @user.talks.build]) do |f| %>
+  <p>
+    <%= f.label :topics, "Topic" %><br>
+    <%= f.text_field :topics %>
+  </p>
+  <p>
+    <%= f.label :date %><br>
+    <%= f.date_field :date %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to "All Talks", users_path %>
+<% end %>

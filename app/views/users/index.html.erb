@@ -12,6 +12,30 @@ current user is:
 <%= current_user.email %>
 <hr>
 
+<div class="panel panel-default">
+  <div class="panel-heading">Lightning Talks</div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+        <th>Topic</th>
+      </tr>
+    </thead>
+    <% @users.each do |user| %>
+      <tr>
+      <% user.talks.each do |talk| %>
+        <td><%= talk.user_id %></td>
+        <td><%= talk.date %></td>
+        <td><%= talk.topics %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+
+
 <%= link_to "Sign up for a lightning talk", user_path(current_user) %>
 
 <% else %>
