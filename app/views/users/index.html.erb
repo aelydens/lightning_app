@@ -1,7 +1,7 @@
 <hr>
 
 <% if current_user %>
-Welcome, <%= current_user.email %>!
+Welcome, <%= @user.name %>!
 <hr>
 
 <%= link_to "Sign up for a lightning talk", user_path(current_user) %>
@@ -20,7 +20,7 @@ Welcome, <%= current_user.email %>!
     </thead>
     <% @user_upcoming_talks.each do |talk| %>
       <tr>
-        <td><%= talk.user_id %></td>
+        <td><%= talk.user_name %></td>
         <td><%= talk.date %></td>
         <td><%= talk.topics %></td>
         <td><%= talk.completed %></td>
@@ -43,7 +43,7 @@ Welcome, <%= current_user.email %>!
     </thead>
     <% @user_completed_talks.each do |talk| %>
       <tr>
-        <td><%= talk.user_id %></td>
+        <td><%= talk.user_name %></td>
         <td><%= talk.date %></td>
         <td><%= talk.topics %></td>
         <td><%= talk.completed %></td>
