@@ -4,7 +4,9 @@
 Welcome, <%= @user.name %>!
 <hr>
 
-<%= link_to "Sign up for a lightning talk", user_path(current_user) %>
+<div class = "button">
+  <%= link_to "Sign up for a lightning talk", user_path(current_user), class: "btn btn-primary" %>
+</div>
 
 <div class="panel panel-default">
   <div class="panel-heading">Upcoming Lightning Talks</div>
@@ -20,10 +22,13 @@ Welcome, <%= @user.name %>!
     </thead>
     <% @user_upcoming_talks.each do |talk| %>
       <tr>
-        <td><%= talk.user_name %></td>
+        <td><%= talk.user.name %></td>
         <td><%= talk.date %></td>
         <td><%= talk.topics %></td>
         <td><%= talk.completed %></td>
+        <% if @user.admin %>
+        <td><%= link_to "Update", edit_user_talk_path(@user, talk) %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>
@@ -43,20 +48,16 @@ Welcome, <%= @user.name %>!
     </thead>
     <% @user_completed_talks.each do |talk| %>
       <tr>
-        <td><%= talk.user_name %></td>
+        <td><%= talk.user.name %></td>
         <td><%= talk.date %></td>
         <td><%= talk.topics %></td>
         <td><%= talk.completed %></td>
+        <% if @user.admin %>
+        <td><%= link_to "Update", '#' %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>
 </div>
-
-
-<hr>
-
-<% else %>
-
-Nobody is here
 
 <% end %>

@@ -26,9 +26,4 @@ class Talk < ActiveRecord::Base
       self.errors[:base] << "There are already 5 lightning talks for that day."
     end
   end
-
-  def user_name
-    user = User.where(id: self.user_id)
-    user
-  end
 end

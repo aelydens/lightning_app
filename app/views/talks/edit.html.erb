@@ -1,0 +1,22 @@
+<%= form_for [@user, @talk] do |f| %>
+
+  <% if @talk.errors.any? %>
+    <% @talk.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+
+  <p>
+    <%= f.label :topics, "Topic" %><br>
+    <%= f.text_field :topics %>
+  </p>
+  <p>
+    <%= f.label :date %><br>
+    <%= f.date_field :date %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to "Back", users_path %>
