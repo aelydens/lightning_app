@@ -14,7 +14,7 @@
   <%= link_to "Sign Out", sign_out_path, method: :delete %>
   <% else %>
   <ul class="nav nav-tabs">
-    <li><%= link_to "Sign In", sign_in_path, data: { toggle: "pill" } %></li>
+    <li><%= link_to "Sign In with GitHub", "auth/github", data: { toggle: "pill" } %></li>
     <li><%= link_to "Sign Up", sign_up_path, data: { toggle: "pill" } %></li>
   </ul>
 <% end %>

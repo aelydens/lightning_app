@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   delete "sign-out", to: "sessions#destroy"
   get "sign-in", to: "sessions#new"
   post "sign-in", to: "sessions#create"
-
+  get "/auth/:provider/callback" => "sessions#create"
+  get "/signout" => "sessions#destroy", :as => :signout
   resources :users do
     resources :talks
   end
