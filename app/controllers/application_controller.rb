@@ -9,4 +9,6 @@ class ApplicationController < ActionController::Base
       User.find(session[:user_id])
     end
   end
+
+  
 end

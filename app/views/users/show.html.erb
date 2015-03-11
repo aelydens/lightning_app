@@ -1,6 +1,6 @@
 <% if current_user %>
 
-Welcome, <%= current_user.email %>
+Welcome, <%= @user.name %>
 
 <div class="panel panel-default">
   <div class="panel-heading">Your Past Talks:</div>
@@ -10,12 +10,14 @@ Welcome, <%= current_user.email %>
       <tr>
         <th>Date</th>
         <th>Topic</th>
+        <th>Completed?</th>
       </tr>
     </thead>
   <% @user_talks.each do |talk| %>
   <tr>
     <td><%= talk.date %></td>
     <td><%= talk.topics %></td>
+    <td><%= talk.completed %></td>
   </tr>
   <% end %>
 <% else %>
@@ -24,29 +26,13 @@ Welcome, <%= current_user.email %>
   </table>
 </div>
 
-
-Sign Up for a Talk:
-
-<%= form_for([@user, @talk]) do |f| %>
-
-<% if @talk.errors.any? %>
-  <% @talk.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
 <% end %>
 
-  <p>
-    <%= f.label :topics, "Topic" %><br>
-    <%= f.text_field :topics %>
-  </p>
-  <p>
-    <%= f.label :date %><br>
-    <%= f.date_field :date %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<div class= "page-header">
+  <h4>Sign Up for a Talk:</h4>
+</div>
 
-<%= link_to "All Talks", users_path %>
-<% end %>
+<%= render 'talks/form' %>
+
+
+<%= link_to "Back to All Talks", users_path, class: "btn btn-default"  %>

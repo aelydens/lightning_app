@@ -11,23 +11,23 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <img alt="Lightning" src="assets/lightning.png" class="logo">
+          <%= image_tag "lightning.png", class: "logo" %>
           <% if current_user %>
-            <%= link_to "Sign Out", sign_out_path, method: :delete, class: "btn btn-default navbar-btn" %>
+            <%= link_to "Sign Out", signout_path, method: :delete, class: "btn btn-default navbar-btn" %>
             <% else %>
               <%= link_to "Sign In with GitHub", "auth/github", class: "btn btn-default navbar-btn" %>
-              <%= link_to "Sign Up", sign_up_path, class: "btn btn-default navbar-btn" %>
           <% end %>
         </div>
       </div>
     </nav>
-
+    
+  <% if current_user.nil? %>
   <div class="jumbotron">
     <h1>g7 Lightning Talk App</h1>
     <p>If you're trying to sign up for a lightning talk, you've come to the right place.<p>
   </div>
-<%= yield %>
-
+  <% end %>
+    <%= yield %>
   </div>
 </body>
 </html>

@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   root "users#index"
-  get "sign-up", to: "users#new"
-  post "sign-up", to: "users#create"
-  delete "sign-out", to: "sessions#destroy"
-  get "/auth/:provider/callback" => "sessions#create"
-  get "/signout", to: "sessions#destroy", :as => :signout
+  get "/auth/:provider/callback", to: "sessions#create"
+  delete "/signout", to: "sessions#destroy", :as => :signout
+
   resources :users do
     resources :talks
   end

@@ -8,6 +8,8 @@ Welcome, <%= @user.name %>!
   <%= link_to "Sign up for a lightning talk", user_path(current_user), class: "btn btn-primary" %>
 </div>
 
+<%= flash[:notice] %>
+
 <div class="panel panel-default">
   <div class="panel-heading">Upcoming Lightning Talks</div>
 
@@ -17,7 +19,7 @@ Welcome, <%= @user.name %>!
         <th>User</th>
         <th>Date</th>
         <th>Topic</th>
-        <th>Completed</th>
+        <th colspan="2">Completed</th>
       </tr>
     </thead>
     <% @user_upcoming_talks.each do |talk| %>
@@ -43,7 +45,7 @@ Welcome, <%= @user.name %>!
         <th>User</th>
         <th>Date</th>
         <th>Topic</th>
-        <th>Completed</th>
+        <th colspan= "2">Completed</th>
       </tr>
     </thead>
     <% @user_completed_talks.each do |talk| %>
@@ -53,7 +55,7 @@ Welcome, <%= @user.name %>!
         <td><%= talk.topics %></td>
         <td><%= talk.completed %></td>
         <% if @user.admin %>
-        <td><%= link_to "Update", '#' %></td>
+        <td><%= link_to "Update", edit_user_talk_path(@user, talk) %></td>
         <% end %>
       </tr>
     <% end %>
