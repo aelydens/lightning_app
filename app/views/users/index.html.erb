@@ -27,7 +27,7 @@ Welcome, <%= @user.name %>!
         <td><%= talk.user.name %></td>
         <td><%= talk.date %></td>
         <td><%= talk.topics %></td>
-        <td><%= talk.completed %></td>
+        <td><%= talk.talk_completed %></td>
         <% if @user.admin %>
         <td><%= link_to "Update", edit_user_talk_path(@user, talk) %></td>
         <% end %>

@@ -10,6 +10,8 @@ class Talk < ActiveRecord::Base
   def talk_completed
     if self.date.present? && self.date < Date.today
       self.update_attributes(completed: true)
+    else
+      false
     end
   end
 

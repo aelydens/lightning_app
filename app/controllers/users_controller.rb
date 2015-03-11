@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+
   def index
+    
     @users = User.all
     @user = current_user
     @user_completed_talks = Talk.where(completed: true)
